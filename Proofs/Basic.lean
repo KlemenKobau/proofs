@@ -39,3 +39,24 @@ theorem sum_odds (n : ℕ) :
     rw [Finset.sum_range_succ]
     rw [ih]
     ring
+
+
+namespace Fib
+
+def fib : ℕ → ℕ
+  | 0 => 0
+  | 1 => 1
+  | n + 2 => fib n + fib (n + 1)
+
+theorem fib_sum (n : ℕ) :
+    ∑ i ∈ Finset.range n, fib i + 1 = fib (n + 1) := by
+  induction n with
+  | zero => simp [fib]
+  | succ k ih =>
+    rw [Finset.sum_range_succ]
+    rw [fib]
+    rw [← ih] /- Proof is in form A = B, rw searches for A and replaces with B, ←
+                makes it search by B and replace with A -/
+    ring
+
+end Fib
