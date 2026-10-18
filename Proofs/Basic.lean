@@ -20,3 +20,13 @@ theorem odd_sq (n : ℕ) (h : Odd n) : Odd (n ^ 2) := by
     obtain ⟨k, rfl⟩ := h
     use (2 * k^2 + 2 * k)
     ring
+
+theorem gauss_sum (n : ℕ) :
+    2 * ∑ i ∈ Finset.range (n + 1), i = n * (n + 1) := by
+  induction n with
+  | zero => simp
+  | succ k ih =>
+    rw [Finset.sum_range_succ]
+    rw [mul_add 2]
+    rw [ih]
+    ring
