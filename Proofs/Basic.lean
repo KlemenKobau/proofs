@@ -15,3 +15,8 @@ theorem euclid_triple (m n : ℤ) :
 
 theorem two_mul_le (a b : ℝ) : 2 * a * b ≤ a^2 + b^2 := by
     nlinarith [sq_nonneg (a - b)]
+
+theorem odd_sq (n : ℕ) (h : Odd n) : Odd (n ^ 2) := by
+    obtain ⟨k, rfl⟩ := h
+    use (2 * k^2 + 2 * k)
+    ring
