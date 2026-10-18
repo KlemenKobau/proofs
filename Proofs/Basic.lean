@@ -30,3 +30,12 @@ theorem gauss_sum (n : ℕ) :
     rw [mul_add 2]
     rw [ih]
     ring
+
+theorem sum_odds (n : ℕ) :
+    ∑ i ∈ Finset.range n, (2 * i + 1) = n ^ 2 := by
+  induction n with
+  | zero => simp
+  | succ k ih =>
+    rw [Finset.sum_range_succ]
+    rw [ih]
+    ring
