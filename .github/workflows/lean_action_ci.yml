@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: leanprover/lean-action@v1
+      - name: Generate landing page
+        run: python3 scripts/gen_index.py
       - uses: leanprover-community/docgen-action@v1
         with:
           build-page: false
